@@ -7,7 +7,7 @@
 ## 阅读路径
 
 1. 先阅读 [电机控制总览](docs/overview.md)，理解开环、闭环、电流环、速度环和位置环。
-2. 再按电机类型阅读专题：
+2. 按目标选择 [阅读路线](docs/reading-map.md)，再按电机类型阅读专题：
    - [TT 电机控制](docs/dc-tt-motor.md)
    - [直流减速电机控制](docs/dc-geared-motor.md)
    - [步进电机控制](docs/stepper-motor.md)
@@ -16,6 +16,7 @@
 4. 遇到驱动器、传感器和采样概念时阅读 [必要硬件背景](docs/hardware-background.md)。
 5. 选型或比较时阅读 [电机类型对比](docs/comparison.md)。
 6. 查术语、英文名和符号时阅读 [术语表](docs/glossary.md)。
+7. 继续深入时参考 [参考资料与检索关键词](docs/references.md)。
 
 ## 内容范围
 
@@ -28,6 +29,7 @@
 | 文档 | 内容 |
 | --- | --- |
 | [overview.md](docs/overview.md) | 电机控制总览与控制层级 |
+| [reading-map.md](docs/reading-map.md) | 按学习目标组织的阅读路线 |
 | [dc-tt-motor.md](docs/dc-tt-motor.md) | TT 电机的 PWM 调速与闭环控制 |
 | [dc-geared-motor.md](docs/dc-geared-motor.md) | 直流减速电机模型、齿轮箱影响与控制 |
 | [stepper-motor.md](docs/stepper-motor.md) | 步进电机开环、细分和加减速控制 |
@@ -36,4 +38,4 @@
 | [hardware-background.md](docs/hardware-background.md) | H 桥、逆变器、采样、编码器和保护 |
 | [comparison.md](docs/comparison.md) | 电机类型对比和适用场景 |
 | [glossary.md](docs/glossary.md) | 中英术语、缩写、符号和注释 |
-
+| [references.md](docs/references.md) | 参考资料类型和检索关键词 |
