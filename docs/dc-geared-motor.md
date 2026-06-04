@@ -30,6 +30,17 @@
 
 `η_g` 是齿轮箱效率（Gearbox Efficiency）。实际系统还存在齿隙、弹性、摩擦和传动误差。
 
+### 传动参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `N` | Gear Ratio | 减速比 | 1 | 定义为电机轴速度与输出轴速度之比。`N` 越大，输出速度越低、理想输出转矩越大。 |
+| `ω_m` | Motor Angular Velocity | 电机轴角速度 | rad/s | 减速器输入端速度。 |
+| `ω_o` | Output Angular Velocity | 输出轴角速度 | rad/s | 减速器输出端速度，通常是机构实际使用的速度。 |
+| `τ_m` | Motor Torque | 电机轴转矩 | N·m | 电机本体输出到齿轮箱输入端的转矩。 |
+| `τ_o` | Output Torque | 输出轴转矩 | N·m | 齿轮箱输出端可作用到负载上的转矩。 |
+| `η_g` | Gearbox Efficiency | 齿轮箱效率 | 1 或 % | 表示齿轮传动损耗。效率小于 1，实际输出功率低于输入功率。 |
+
 ## 关键词汇与注释
 
 | 中文术语 | English | 注释 |
@@ -83,6 +94,17 @@ J_{o,eq}\frac{d\omega_o}{dt}+B_{o,eq}\omega_o+\tau_{f,o}+\tau_L
 ```
 
 代入 `ω_m=Nω_o`，得到 `τ_o≈η_g N τ_m`。
+
+### 等效惯量参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `J_m` | Motor Inertia | 电机转子惯量 | kg·m² | 电机本体转子的转动惯量。 |
+| `J_o` | Output Load Inertia | 输出侧负载惯量 | kg·m² | 负载在输出轴侧表现出来的转动惯量。 |
+| `J_ref` | Reflected Inertia | 折算惯量 | kg·m² | 把输出侧负载通过减速比折算到电机轴侧后的等效惯量。 |
+| `J_o,eq` | Equivalent Output Inertia | 输出侧等效惯量 | kg·m² | 在输出轴侧统一表示的总惯量。 |
+| `B_eq` | Equivalent Damping | 等效阻尼 | N·m·s/rad | 包含电机、齿轮和负载折算后的阻尼影响。 |
+| `τ_f,eq` | Equivalent Friction Torque | 等效摩擦转矩 | N·m | 折算到同一轴侧后的综合摩擦转矩。 |
 
 ## 常见控制目标
 

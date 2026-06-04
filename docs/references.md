@@ -19,6 +19,10 @@
 - 步进电机恒流斩波驱动（Stepper Chopper Current Drive）
 - 直流电机 H 桥驱动与电流限制（DC Motor H-bridge Current Limit）
 
+## 在线参考
+
+- [FOC 相关图文说明（知乎）](https://zhuanlan.zhihu.com/p/147659820)：可作为理解 FOC 坐标变换、转矩电流和控制流程的补充阅读。本文档不复制其中图片，使用重新绘制的 Mermaid 图说明信号流。
+
 ## 数据手册阅读重点
 
 阅读电机或驱动芯片数据手册时，优先关注：

@@ -66,6 +66,17 @@ J\frac{d\omega}{dt}+B\omega+\tau_L=\tau_e
 
 其中，`J` 是转动惯量（Moment of Inertia），`B` 是粘性阻尼系数（Viscous Damping Coefficient），`ω` 是角速度（Angular Velocity），`τ_L` 是负载转矩（Load Torque），`τ_e` 是电磁转矩（Electromagnetic Torque）。
 
+### 参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `J` | Moment of Inertia | 转动惯量 | kg·m² | 描述转子和负载抵抗角加速度变化的能力。`J` 越大，同样转矩下加速越慢。 |
+| `B` | Viscous Damping Coefficient | 粘性阻尼系数 | N·m·s/rad | 描述速度越高阻力越大的摩擦或阻尼项。 |
+| `ω` | Angular Velocity | 角速度 | rad/s | 描述电机轴或输出轴转动快慢。 |
+| `θ` | Angular Position | 角位置 | rad | 描述旋转位置，速度 `ω` 对时间积分后得到位置 `θ`。 |
+| `τ_L` | Load Torque | 负载转矩 | N·m | 外部机械负载施加到电机轴上的阻力矩或扰动力矩。 |
+| `τ_e` | Electromagnetic Torque | 电磁转矩 | N·m | 电机电磁作用产生的输出转矩，是驱动机械系统运动的主要来源。 |
+
 由角速度积分得到位置：
 
 ```math

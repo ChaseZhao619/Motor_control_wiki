@@ -42,6 +42,16 @@ BLDC 通常由永磁转子（Permanent Magnet Rotor）、三相定子绕组（Th
 
 其中 `v_abc` 是三相电压，`i_abc` 是三相电流，`R_s` 是相电阻，`L_s` 是相电感，`e_abc` 是三相反电动势。
 
+### 三相模型参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `v_abc` | Three-phase Voltage Vector | 三相电压向量 | V | 由 `v_a`、`v_b`、`v_c` 组成，表示控制器施加到三相绕组上的电压。 |
+| `i_abc` | Three-phase Current Vector | 三相电流向量 | A | 由 `i_a`、`i_b`、`i_c` 组成，是 FOC 电流采样的主要输入。 |
+| `e_abc` | Three-phase Back-EMF Vector | 三相反电动势向量 | V | 电机旋转时三相绕组产生的感应电压。 |
+| `R_s` | Stator Resistance | 定子相电阻 | ohm | 单相绕组的等效电阻，影响低速电流控制和铜耗。 |
+| `L_s` | Stator Inductance | 定子相电感 | H | 单相绕组的等效电感，影响电流变化速度和电流环带宽。 |
+
 FOC 常用 Clarke 变换（Clarke Transform）把三相量变到静止 `αβ` 坐标：
 
 ```math
@@ -88,6 +98,21 @@ i_\beta
 
 其中 `p` 是极对数（Pole Pairs），`ψ_f` 是永磁体磁链（Permanent Magnet Flux Linkage）。在 `i_d=0` 控制下，转矩主要由 `i_q` 决定。
 
+### FOC 参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `i_a, i_b, i_c` | Phase Currents | 三相相电流 | A | 逆变器输出到电机三相绕组的实际电流。 |
+| `i_α, i_β` | Alpha-beta Currents | 静止坐标系电流 | A | Clarke 变换后的两轴电流，坐标系不随转子旋转。 |
+| `i_d` | Direct-axis Current | d 轴电流 | A | 与转子磁链同向的电流分量。表贴式 BLDC 通常设为 0。 |
+| `i_q` | Quadrature-axis Current | q 轴电流 | A | 与转子磁链正交的电流分量，主要产生电磁转矩。 |
+| `v_d, v_q` | dq-axis Voltages | d/q 轴电压 | V | 电流 PI 控制器输出的旋转坐标系电压命令。 |
+| `θ_e` | Electrical Angle | 电角度 | rad 或 deg | 转子磁场在电磁周期中的角度，是 Park 变换和反 Park 变换的关键输入。 |
+| `θ_m` | Mechanical Angle | 机械角度 | rad 或 deg | 转子实际机械旋转角度。 |
+| `p` | Pole Pairs | 极对数 | 1 | 电角度和机械角度的比例系数。 |
+| `ψ_f` | Permanent Magnet Flux Linkage | 永磁体磁链 | Wb | 永磁体提供的等效磁链，决定转矩常数。 |
+| `τ_e` | Electromagnetic Torque | 电磁转矩 | N·m | 电机通过电磁作用产生的转矩。 |
+
 电角度（Electrical Angle）与机械角度（Mechanical Angle）的关系为：
 
 ```math
@@ -97,6 +122,17 @@ i_\beta
 其中 `p` 为极对数。机械转子转过一圈时，电角度会转过 `p` 个电周期。换相表、霍尔状态和 FOC 角度都必须使用电角度。
 
 `dq` 坐标系中，`d` 轴（Direct Axis）与转子永磁体磁链方向对齐，`q` 轴（Quadrature Axis）与 `d` 轴正交。表贴式 BLDC 常令 `i_d^*=0`，因为 `i_d` 主要改变磁链而不直接产生有效转矩；`i_q` 与转矩近似成正比。
+
+```mermaid
+flowchart LR
+    A[三相电流 ia ib ic] --> B[Clarke 变换]
+    B --> C[静止坐标 i_alpha i_beta]
+    C --> D[Park 变换]
+    E[转子电角度 theta_e] --> D
+    D --> F[dq 坐标 id iq]
+    F --> G[id 控制磁链]
+    F --> H[iq 控制转矩]
+```
 
 ## 常见控制目标
 
@@ -141,7 +177,7 @@ e \propto \omega
 FOC 的目标是把电流矢量锁定在最有效的转矩方向。典型控制律为：
 
 ```math
-e_d=i_d^*-i_d,\quad e_q=i_q^\ast-i_q
+e_d=i_d^\ast-i_d,\quad e_q=i_q^\ast-i_q
 ```
 
 ```math
@@ -155,6 +191,28 @@ v_q=K_{pq}e_q+K_{iq}\int e_q dt
 再经过反 Park 变换和空间矢量脉宽调制（Space Vector PWM, SVPWM）生成三相逆变器占空比。
 
 典型 FOC 流程为：采样三相电流，经过 Clarke 变换得到 `i_α/i_β`；结合转子电角度做 Park 变换得到 `i_d/i_q`；分别用 PI 控制 `i_d` 和 `i_q`；再反变换到静止坐标，最后通过 SVPWM 生成三相占空比。
+
+```mermaid
+flowchart LR
+    IA[采样 ia ib ic] --> CL[Clarke]
+    CL --> AB[i_alpha i_beta]
+    ANG[theta_e] --> PK[Park]
+    AB --> PK
+    PK --> DQ[id iq]
+    REF[id_ref iq_ref] --> ERR[电流误差]
+    DQ --> ERR
+    ERR --> PI[dq 电流 PI]
+    PI --> VDQ[vd vq]
+    VDQ --> IPK[反 Park]
+    ANG --> IPK
+    IPK --> VALPHA[v_alpha v_beta]
+    VALPHA --> SV[SVPWM]
+    SV --> INV[三相逆变器]
+    INV --> M[BLDC]
+    M --> IA
+```
+
+参考阅读：[FOC 相关图文说明（知乎）](https://zhuanlan.zhihu.com/p/147659820)。本文档中的流程图为重新绘制的原创结构图，用于说明信号流，不复制外部文章图片。
 
 ## 控制框图
 

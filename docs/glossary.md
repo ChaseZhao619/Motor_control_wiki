@@ -38,6 +38,9 @@
 | Clarke 变换 | Clarke Transform | - | 把三相静止坐标量变换到两相静止 `αβ` 坐标。 | [BLDC](bldc-motor.md) |
 | Park 变换 | Park Transform | - | 把静止 `αβ` 坐标量变换到旋转 `dq` 坐标。 | [BLDC](bldc-motor.md) |
 | dq 坐标系 | Direct-quadrature Reference Frame | dq | 随转子磁场旋转的坐标系，用于分解磁链和转矩电流。 | [BLDC](bldc-motor.md) |
+| d 轴 | Direct Axis | d-axis | 与转子永磁体磁链方向对齐的旋转坐标轴。 | [BLDC](bldc-motor.md) |
+| q 轴 | Quadrature Axis | q-axis | 与 d 轴正交的旋转坐标轴，q 轴电流主要产生转矩。 | [BLDC](bldc-motor.md) |
+| 反 Park 变换 | Inverse Park Transform | - | 把旋转 `dq` 坐标中的电压或电流命令变回静止 `αβ` 坐标。 | [BLDC](bldc-motor.md) |
 | 磁场定向控制 | Field-oriented Control | FOC | 在旋转坐标系中独立控制励磁和转矩电流。 | [BLDC](bldc-motor.md) |
 | 空间矢量脉宽调制 | Space Vector PWM | SVPWM | 用逆变器开关状态合成目标电压矢量。 | [BLDC](bldc-motor.md) |
 | 反电动势过零 | Back-EMF Zero Crossing | ZC | 悬空相反电动势经过中性点电压的时刻，可用于无感换相。 | [BLDC](bldc-motor.md) |
@@ -68,6 +71,11 @@
 | `T_s` | 采样周期 | s |
 | `p` | 极对数 | 1 |
 | `N` | 减速比 | 1 |
+| `i_d` | d 轴电流 | A |
+| `i_q` | q 轴电流 | A |
+| `v_d` | d 轴电压 | V |
+| `v_q` | q 轴电压 | V |
+| `ψ_f` | 永磁体磁链 | Wb |
 
 ## 导航
 

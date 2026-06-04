@@ -46,6 +46,20 @@ i_B=I\sin\theta_e
 
 其中 `θ_e` 是电角度（Electrical Angle），`I` 是相电流幅值。合成磁场方向由 `θ_e` 决定。
 
+### 参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `i_A` | Phase A Current | A 相电流 | A | 流过 A 相绕组的电流。 |
+| `i_B` | Phase B Current | B 相电流 | A | 流过 B 相绕组的电流。 |
+| `I` | Current Amplitude | 相电流幅值 | A | 两相电流合成磁场的幅值，决定可产生的最大静态转矩。 |
+| `θ_e` | Electrical Angle | 电角度 | rad 或 deg | 控制器希望定子磁场指向的电角度。 |
+| `θ_r` | Rotor Electrical Angle | 转子电角度 | rad 或 deg | 转子实际磁场方向对应的电角度。 |
+| `δ` | Load Angle | 负载角 | rad 或 deg | 定子磁场与转子之间的角度差。`δ` 过大时会失步。 |
+| `K_s` | Stiffness Constant | 等效刚度常数 | N·m/A | 描述相电流产生磁拉力的能力。 |
+| `M` | Microstep Count | 细分数 | 1 | 一个整步被分成的细分数量。 |
+| `k` | Microstep Index | 细分索引 | 1 | 当前细分位置编号。 |
+
 若转子实际电角度为 `θ_r`，简化电磁转矩可写为：
 
 ```math

@@ -75,6 +75,15 @@ flowchart LR
 
 其中 `T_s` 是采样周期（Sampling Period）。差分会放大位置量化噪声，因此实际系统常加入滤波或使用更长计数窗口。
 
+### 参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `θ[k]` | Sampled Position | 第 `k` 次采样位置 | rad | 离散时刻测得的位置。 |
+| `θ[k-1]` | Previous Position | 上一次采样位置 | rad | 用于和当前采样位置做差分。 |
+| `ω[k]` | Sampled Speed | 第 `k` 次估算速度 | rad/s | 由相邻位置差分估算出的速度。 |
+| `T_s` | Sampling Period | 采样周期 | s | 两次位置采样之间的时间间隔。 |
+
 ## 电源与保护
 
 电机是强扰动负载，启动、制动、堵转和反转会产生大电流。常见保护包括过流保护（Over-current Protection）、过温保护（Over-temperature Protection）、欠压保护（Under-voltage Lockout）和反接保护（Reverse Polarity Protection）。

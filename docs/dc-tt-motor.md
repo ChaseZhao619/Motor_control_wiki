@@ -60,6 +60,21 @@ J_m\frac{d\omega_m}{dt}+B_m\omega_m+\tau_f+\tau_{load,m}=\tau_m
 
 其中，`u_a` 为电枢电压，`i_a` 为电枢电流，`R_a` 为电枢电阻，`L_a` 为电枢电感，`K_e` 为反电动势常数，`K_t` 为转矩常数，`ω_m` 为电机轴角速度。
 
+### 参数说明
+
+| 参数 | English | 含义 | 常见单位 | 说明 |
+| --- | --- | --- | --- | --- |
+| `u_a` | Armature Voltage | 电枢电压 | V | 加在有刷直流电机电枢绕组上的电压。PWM 调速时通常指等效平均电压。 |
+| `i_a` | Armature Current | 电枢电流 | A | 流过电枢绕组的电流，近似决定电机输出转矩。 |
+| `R_a` | Armature Resistance | 电枢电阻 | ohm | 电枢绕组的等效电阻，决定堵转时电流大小。 |
+| `L_a` | Armature Inductance | 电枢电感 | H | 电枢绕组储能能力，会使电流不能瞬间变化。 |
+| `e_b` | Back-EMF | 反电动势 | V | 电机旋转时产生的感应电压，速度越高越大。 |
+| `K_e` | Back-EMF Constant | 反电动势常数 | V·s/rad | 角速度与反电动势之间的比例系数。 |
+| `K_t` | Torque Constant | 转矩常数 | N·m/A | 电流与电磁转矩之间的比例系数。 |
+| `ω_m` | Motor Angular Velocity | 电机轴角速度 | rad/s | 齿轮箱输入端，也就是电机本体转子的机械角速度。 |
+| `τ_f` | Friction Torque | 摩擦转矩 | N·m | 电刷、轴承和齿轮箱产生的阻力矩。 |
+| `D` | Duty Cycle | 占空比 | 1 或 % | PWM 高电平时间占整个周期的比例。 |
+
 若电感动态远快于机械动态，可近似令 `L_a di_a/dt ≈ 0`：
 
 ```math
