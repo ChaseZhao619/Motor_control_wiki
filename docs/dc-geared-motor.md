@@ -20,13 +20,13 @@
 
 电机本体产生高速低转矩输出，齿轮箱按减速比 `N` 把速度降低、转矩放大。若定义 `N=ω_m/ω_o`，其中 `ω_m` 是电机轴速度，`ω_o` 是输出轴速度，则理想关系为：
 
-$$
+```math
 \omega_o=\frac{\omega_m}{N}
-$$
+```
 
-$$
+```math
 \tau_o=\eta_g N\tau_m
-$$
+```
 
 `η_g` 是齿轮箱效率（Gearbox Efficiency）。实际系统还存在齿隙、弹性、摩擦和传动误差。
 
@@ -44,43 +44,43 @@ $$
 
 电气侧仍满足：
 
-$$
+```math
 u_a = R_a i_a + L_a\frac{di_a}{dt}+K_e\omega_m
-$$
+```
 
 电机侧转矩：
 
-$$
+```math
 \tau_m=K_t i_a
-$$
+```
 
 负载惯量 `J_o` 折算到电机轴为：
 
-$$
+```math
 J_{ref}=\frac{J_o}{\eta_g N^2}
-$$
+```
 
 因此电机轴等效机械方程为：
 
-$$
+```math
 \left(J_m+J_{ref}\right)\frac{d\omega_m}{dt}
 +B_{eq}\omega_m+\tau_{f,eq}
 +\frac{\tau_o}{\eta_g N}
 =K_t i_a
-$$
+```
 
 如果以输出轴建模，则：
 
-$$
+```math
 J_{o,eq}\frac{d\omega_o}{dt}+B_{o,eq}\omega_o+\tau_{f,o}+\tau_L
 =\eta_g N K_t i_a
-$$
+```
 
 推导的关键是功率近似守恒：
 
-$$
+```math
 \tau_m\omega_m \eta_g ≈ \tau_o\omega_o
-$$
+```
 
 代入 `ω_m=Nω_o`，得到 `τ_o≈η_g N τ_m`。
 
@@ -94,21 +94,21 @@ $$
 
 直流减速电机常用级联控制：
 
-$$
+```math
 e_\theta=\theta^*-\theta
-$$
+```
 
-$$
+```math
 \omega^\ast=K_{p\theta}e_\theta
-$$
+```
 
-$$
+```math
 e_\omega=\omega^\ast-\omega
-$$
+```
 
-$$
+```math
 u=K_{p\omega}e_\omega+K_{i\omega}\int e_\omega dt
-$$
+```
 
 位置环输出速度目标，速度环输出电压或 PWM。若有电流采样，可再加入电流环，把速度环输出解释为目标电流。
 

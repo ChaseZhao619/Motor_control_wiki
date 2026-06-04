@@ -36,35 +36,35 @@
 
 理想两相步进电机相电流为：
 
-$$
+```math
 i_A=I\cos\theta_e
-$$
+```
 
-$$
+```math
 i_B=I\sin\theta_e
-$$
+```
 
 其中 `θ_e` 是电角度（Electrical Angle），`I` 是相电流幅值。合成磁场方向由 `θ_e` 决定。
 
 若转子实际电角度为 `θ_r`，简化电磁转矩可写为：
 
-$$
+```math
 \tau_e=K_s I\sin(\theta_e-\theta_r)
-$$
+```
 
 `K_s` 是等效刚度常数。令负载转矩为 `τ_L`，转动方程为：
 
-$$
+```math
 J\frac{d^2\theta_r}{dt^2}+B\frac{d\theta_r}{dt}+\tau_L
 =K_s I\sin(\theta_e-\theta_r)
-$$
+```
 
 当角度误差 `δ=θ_e-θ_r` 较小时，`sinδ≈δ`：
 
-$$
+```math
 J\ddot{\theta}_r+B\dot{\theta}_r+K_sI\theta_r
 =K_sI\theta_e-\tau_L
-$$
+```
 
 这表明步进电机开环系统像一个被磁场牵引的二阶弹簧-阻尼系统。加速过快时，转子跟不上旋转磁场，`δ` 过大后就会失步。
 
@@ -78,13 +78,13 @@ $$
 
 整步控制（Full-step Control）每次切换到下一个稳定磁场方向，转矩较大但振动明显。半步控制（Half-step Control）在单相和双相通电之间切换，分辨率提高一倍。细分控制让两相电流近似正弦变化：
 
-$$
+```math
 i_A=I_{max}\cos\left(\frac{k}{M}\frac{\pi}{2}\right)
-$$
+```
 
-$$
+```math
 i_B=I_{max}\sin\left(\frac{k}{M}\frac{\pi}{2}\right)
-$$
+```
 
 `M` 为每整步细分数，`k` 为细分索引。细分提高平滑性，但不等于线性提高绝对定位精度，因为齿槽转矩、负载和电流误差仍会影响实际角度。
 

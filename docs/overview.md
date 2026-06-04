@@ -60,17 +60,17 @@ flowchart LR
 
 电机机械侧可以抽象为：
 
-$$
+```math
 J\frac{d\omega}{dt}+B\omega+\tau_L=\tau_e
-$$
+```
 
 其中，`J` 是转动惯量（Moment of Inertia），`B` 是粘性阻尼系数（Viscous Damping Coefficient），`ω` 是角速度（Angular Velocity），`τ_L` 是负载转矩（Load Torque），`τ_e` 是电磁转矩（Electromagnetic Torque）。
 
 由角速度积分得到位置：
 
-$$
+```math
 \theta(t)=\theta(0)+\int_0^t \omega(\lambda)d\lambda
-$$
+```
 
 这说明位置控制必然依赖速度动态，速度控制又依赖转矩动态，而转矩通常与电流相关。
 

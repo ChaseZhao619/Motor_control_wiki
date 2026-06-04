@@ -36,45 +36,63 @@ BLDC 通常由永磁转子（Permanent Magnet Rotor）、三相定子绕组（Th
 
 三相电压方程可写为：
 
-$$
+```math
 \mathbf{v}_{abc}=R_s\mathbf{i}_{abc}+L_s\frac{d\mathbf{i}_{abc}}{dt}+\mathbf{e}_{abc}
-$$
+```
 
 其中 `v_abc` 是三相电压，`i_abc` 是三相电流，`R_s` 是相电阻，`L_s` 是相电感，`e_abc` 是三相反电动势。
 
-FOC 常用 Clarke 变换（Clarke Transform）把三相量变到静止 `αβ` 坐标。为避免部分 Markdown 预览器对矩阵换行渲染不稳定，这里用逐行方程表示：
+FOC 常用 Clarke 变换（Clarke Transform）把三相量变到静止 `αβ` 坐标：
 
-$$
-i_\alpha=\frac{2}{3}\left(i_a-\frac{1}{2}i_b-\frac{1}{2}i_c\right)
-$$
-
-$$
-i_\beta=\frac{2}{3}\left(\frac{\sqrt{3}}{2}i_b-\frac{\sqrt{3}}{2}i_c\right)
-$$
+```math
+\begin{bmatrix}
+i_\alpha \\
+i_\beta
+\end{bmatrix}
+=
+\frac{2}{3}
+\begin{bmatrix}
+1 & -\frac{1}{2} & -\frac{1}{2} \\
+0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2}
+\end{bmatrix}
+\begin{bmatrix}
+i_a \\
+i_b \\
+i_c
+\end{bmatrix}
+```
 
 再用 Park 变换（Park Transform）进入随转子旋转的 `dq` 坐标：
 
-$$
-i_d=i_\alpha\cos\theta_e+i_\beta\sin\theta_e
-$$
-
-$$
-i_q=-i_\alpha\sin\theta_e+i_\beta\cos\theta_e
-$$
+```math
+\begin{bmatrix}
+i_d \\
+i_q
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos\theta_e & \sin\theta_e \\
+-\sin\theta_e & \cos\theta_e
+\end{bmatrix}
+\begin{bmatrix}
+i_\alpha \\
+i_\beta
+\end{bmatrix}
+```
 
 表贴式永磁同步电机近似满足：
 
-$$
+```math
 \tau_e=\frac{3}{2}p\psi_f i_q
-$$
+```
 
 其中 `p` 是极对数（Pole Pairs），`ψ_f` 是永磁体磁链（Permanent Magnet Flux Linkage）。在 `i_d=0` 控制下，转矩主要由 `i_q` 决定。
 
 电角度（Electrical Angle）与机械角度（Mechanical Angle）的关系为：
 
-$$
+```math
 \theta_e=p\theta_m
-$$
+```
 
 其中 `p` 为极对数。机械转子转过一圈时，电角度会转过 `p` 个电周期。换相表、霍尔状态和 FOC 角度都必须使用电角度。
 
@@ -97,12 +115,12 @@ $$
 
 | 电角度区间 | 正向导通 | 负向导通 | 悬空相 |
 | --- | --- | --- | --- |
-| 0 到 60 deg | U | V | W |
-| 60 到 120 deg | U | W | V |
-| 120 到 180 deg | V | W | U |
-| 180 到 240 deg | V | U | W |
-| 240 到 300 deg | W | U | V |
-| 300 到 360 deg | W | V | U |
+| 0° 到 60° | U | V | W |
+| 60° 到 120° | U | W | V |
+| 120° 到 180° | V | W | U |
+| 180° 到 240° | V | U | W |
+| 240° 到 300° | W | U | V |
+| 300° 到 360° | W | V | U |
 
 霍尔传感器（Hall Sensor）通常给出 3 位状态码，每个有效状态对应一个 60 电角度区间。控制器读取霍尔状态后查表得到当前导通相。无效状态如 `000` 或 `111` 通常表示传感器、线序或供电异常。
 
@@ -110,9 +128,9 @@ $$
 
 无感反电动势控制依赖关系：
 
-$$
+```math
 e \propto \omega
-$$
+```
 
 六步无感控制常检测悬空相反电动势过零点（Back-EMF Zero Crossing）。理想情况下，过零点出现在两个换相点中间，因此检测到过零后需要延迟约 30 电角度再换相。
 
@@ -122,17 +140,17 @@ $$
 
 FOC 的目标是把电流矢量锁定在最有效的转矩方向。典型控制律为：
 
-$$
+```math
 e_d=i_d^*-i_d,\quad e_q=i_q^\ast-i_q
-$$
+```
 
-$$
+```math
 v_d=K_{pd}e_d+K_{id}\int e_d dt
-$$
+```
 
-$$
+```math
 v_q=K_{pq}e_q+K_{iq}\int e_q dt
-$$
+```
 
 再经过反 Park 变换和空间矢量脉宽调制（Space Vector PWM, SVPWM）生成三相逆变器占空比。
 

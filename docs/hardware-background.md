@@ -69,9 +69,9 @@ flowchart LR
 
 速度可由位置差分得到：
 
-$$
+```math
 \omega[k]≈\frac{\theta[k]-\theta[k-1]}{T_s}
-$$
+```
 
 其中 `T_s` 是采样周期（Sampling Period）。差分会放大位置量化噪声，因此实际系统常加入滤波或使用更长计数窗口。
 

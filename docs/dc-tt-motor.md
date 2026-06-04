@@ -36,44 +36,44 @@ TT 电机由有刷直流电机、塑料或金属齿轮箱和输出轴组成。�
 
 先忽略齿轮箱，把电枢回路写为：
 
-$$
+```math
 u_a = R_a i_a + L_a\frac{di_a}{dt}+e_b
-$$
+```
 
 反电动势为：
 
-$$
+```math
 e_b = K_e \omega_m
-$$
+```
 
 电磁转矩为：
 
-$$
+```math
 \tau_m=K_t i_a
-$$
+```
 
 机械侧为：
 
-$$
+```math
 J_m\frac{d\omega_m}{dt}+B_m\omega_m+\tau_f+\tau_{load,m}=\tau_m
-$$
+```
 
 其中，`u_a` 为电枢电压，`i_a` 为电枢电流，`R_a` 为电枢电阻，`L_a` 为电枢电感，`K_e` 为反电动势常数，`K_t` 为转矩常数，`ω_m` 为电机轴角速度。
 
 若电感动态远快于机械动态，可近似令 `L_a di_a/dt ≈ 0`：
 
-$$
+```math
 i_a \approx \frac{u_a-K_e\omega_m}{R_a}
-$$
+```
 
 代入机械方程：
 
-$$
+```math
 J_m\frac{d\omega_m}{dt}+
 \left(B_m+\frac{K_tK_e}{R_a}\right)\omega_m
 =
 \frac{K_t}{R_a}u_a-\tau_f-\tau_{load,m}
-$$
+```
 
 这说明 TT 电机速度不是只由 PWM 决定，而是由电压、负载、摩擦和反电动势共同决定。
 
@@ -87,21 +87,21 @@ $$
 
 开环 PWM 控制把占空比 `D` 转换为平均电压：
 
-$$
+```math
 \bar{u}_a ≈ D V_{bus}
-$$
+```
 
 低速时，静摩擦和电刷压降会造成死区，通常需要最小启动占空比。
 
 闭环速度控制常用比例-积分控制（Proportional-Integral Control, PI）：
 
-$$
+```math
 e_\omega=\omega^*-\omega
-$$
+```
 
-$$
+```math
 u_c=K_p e_\omega+K_i\int e_\omega dt
-$$
+```
 
 控制量 `u_c` 再被映射为 PWM 占空比和方向。积分项用于消除稳态误差，但必须配合抗积分饱和（Anti-windup），否则堵转或限幅时会产生长时间过冲。
 

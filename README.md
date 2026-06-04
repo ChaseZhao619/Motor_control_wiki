@@ -4,6 +4,13 @@
 
 关键词汇采用“中文术语（English Term, Abbreviation）”格式，并在首次出现处给出简短注释。例如：反电动势（Back Electromotive Force, Back-EMF）指电机转动时绕组中感应出的、方向与外加电压相反的电压。
 
+## GitHub 阅读说明
+
+- 本库按 GitHub Markdown 网页阅读优化。
+- 块公式统一使用 GitHub 支持的 `math` fenced code block，避免矩阵、下标和反斜杠被 Markdown 预处理影响。
+- 控制框图使用 Mermaid，GitHub 网页可直接渲染。
+- 宽表格在 GitHub 移动端会横向滚动；建议横屏或在桌面端查看对比表、术语表。
+
 ## 阅读路径
 
 1. 先阅读 [电机控制总览](docs/overview.md)，理解开环、闭环、电流环、速度环和位置环。
