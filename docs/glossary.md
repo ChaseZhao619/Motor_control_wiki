@@ -18,7 +18,7 @@
 | 速度环 | Speed Loop | - | 控制角速度的闭环。 | [控制理论](control-theory.md) |
 | 位置环 | Position Loop | - | 控制角度或位移的闭环。 | [控制理论](control-theory.md) |
 | 级联控制 | Cascade Control | - | 外环生成内环目标的多环控制结构。 | [控制理论](control-theory.md) |
-| 采样周期 | Sampling Period | $T_s$ | 离散控制器两次计算之间的时间间隔。 | [控制理论](control-theory.md) |
+| 采样周期 | Sampling Period | `T_s` | 离散控制器两次计算之间的时间间隔。 | [控制理论](control-theory.md) |
 | 有刷直流电机 | Brushed DC Motor | BDC | 依靠电刷和换向器进行机械换向。 | [TT 电机](dc-tt-motor.md) |
 | 直流减速电机 | DC Geared Motor | - | 直流电机加齿轮箱形成的执行器。 | [直流减速电机](dc-geared-motor.md) |
 | 减速比 | Gear Ratio | - | 电机轴速度与输出轴速度的比例。 | [直流减速电机](dc-geared-motor.md) |
@@ -34,9 +34,9 @@
 | 六步换相 | Six-step Commutation | - | 每 60 电角度切换一次导通相。 | [BLDC](bldc-motor.md) |
 | 电角度 | Electrical Angle | - | 以电磁周期计量的角度，等于机械角度乘以极对数。 | [BLDC](bldc-motor.md) |
 | 机械角度 | Mechanical Angle | - | 转子实际机械旋转角度。 | [BLDC](bldc-motor.md) |
-| 极对数 | Pole Pairs | $p$ | 电机中成对磁极的数量，决定机械角度与电角度比例。 | [BLDC](bldc-motor.md) |
-| Clarke 变换 | Clarke Transform | - | 把三相静止坐标量变换到两相静止 $\alpha\beta$ 坐标。 | [BLDC](bldc-motor.md) |
-| Park 变换 | Park Transform | - | 把静止 $\alpha\beta$ 坐标量变换到旋转 $dq$ 坐标。 | [BLDC](bldc-motor.md) |
+| 极对数 | Pole Pairs | `p` | 电机中成对磁极的数量，决定机械角度与电角度比例。 | [BLDC](bldc-motor.md) |
+| Clarke 变换 | Clarke Transform | - | 把三相静止坐标量变换到两相静止 `αβ` 坐标。 | [BLDC](bldc-motor.md) |
+| Park 变换 | Park Transform | - | 把静止 `αβ` 坐标量变换到旋转 `dq` 坐标。 | [BLDC](bldc-motor.md) |
 | dq 坐标系 | Direct-quadrature Reference Frame | dq | 随转子磁场旋转的坐标系，用于分解磁链和转矩电流。 | [BLDC](bldc-motor.md) |
 | 磁场定向控制 | Field-oriented Control | FOC | 在旋转坐标系中独立控制励磁和转矩电流。 | [BLDC](bldc-motor.md) |
 | 空间矢量脉宽调制 | Space Vector PWM | SVPWM | 用逆变器开关状态合成目标电压矢量。 | [BLDC](bldc-motor.md) |
@@ -53,21 +53,21 @@
 
 | 符号 | 含义 | 单位 |
 | --- | --- | --- |
-| $u, v$ | 电压 | V |
-| $i$ | 电流 | A |
-| $R$ | 电阻 | ohm |
-| $L$ | 电感 | H |
-| $\omega$ | 角速度 | rad/s |
-| $\theta$ | 角位置 | rad |
-| $\tau$ | 转矩 | N·m |
-| $J$ | 转动惯量 | kg·m² |
-| $B$ | 粘性阻尼系数 | N·m·s/rad |
-| $K_t$ | 转矩常数 | N·m/A |
-| $K_e$ | 反电动势常数 | V·s/rad |
-| $D$ | PWM 占空比 | 1 或 % |
-| $T_s$ | 采样周期 | s |
-| $p$ | 极对数 | 1 |
-| $N$ | 减速比 | 1 |
+| `u, v` | 电压 | V |
+| `i` | 电流 | A |
+| `R` | 电阻 | ohm |
+| `L` | 电感 | H |
+| `ω` | 角速度 | rad/s |
+| `θ` | 角位置 | rad |
+| `τ` | 转矩 | N·m |
+| `J` | 转动惯量 | kg·m² |
+| `B` | 粘性阻尼系数 | N·m·s/rad |
+| `K_t` | 转矩常数 | N·m/A |
+| `K_e` | 反电动势常数 | V·s/rad |
+| `D` | PWM 占空比 | 1 或 % |
+| `T_s` | 采样周期 | s |
+| `p` | 极对数 | 1 |
+| `N` | 减速比 | 1 |
 
 ## 导航
 

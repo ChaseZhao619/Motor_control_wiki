@@ -18,7 +18,7 @@
 
 ## 基本结构与工作原理
 
-电机本体产生高速低转矩输出，齿轮箱按减速比 $N$ 把速度降低、转矩放大。若定义 $N=\omega_m/\omega_o$，其中 $\omega_m$ 是电机轴速度，$\omega_o$ 是输出轴速度，则理想关系为：
+电机本体产生高速低转矩输出，齿轮箱按减速比 `N` 把速度降低、转矩放大。若定义 `N=ω_m/ω_o`，其中 `ω_m` 是电机轴速度，`ω_o` 是输出轴速度，则理想关系为：
 
 $$
 \omega_o=\frac{\omega_m}{N}
@@ -28,7 +28,7 @@ $$
 \tau_o=\eta_g N\tau_m
 $$
 
-$\eta_g$ 是齿轮箱效率（Gearbox Efficiency）。实际系统还存在齿隙、弹性、摩擦和传动误差。
+`η_g` 是齿轮箱效率（Gearbox Efficiency）。实际系统还存在齿隙、弹性、摩擦和传动误差。
 
 ## 关键词汇与注释
 
@@ -54,7 +54,7 @@ $$
 \tau_m=K_t i_a
 $$
 
-负载惯量 $J_o$ 折算到电机轴为：
+负载惯量 `J_o` 折算到电机轴为：
 
 $$
 J_{ref}=\frac{J_o}{\eta_g N^2}
@@ -79,10 +79,10 @@ $$
 推导的关键是功率近似守恒：
 
 $$
-\tau_m\omega_m \eta_g \approx \tau_o\omega_o
+\tau_m\omega_m \eta_g ≈ \tau_o\omega_o
 $$
 
-代入 $\omega_m=N\omega_o$，得到 $\tau_o\approx\eta_gN\tau_m$。
+代入 `ω_m=Nω_o`，得到 `τ_o≈η_g N τ_m`。
 
 ## 常见控制目标
 
@@ -95,15 +95,15 @@ $$
 直流减速电机常用级联控制：
 
 $$
-e_\theta=\theta^\*-\theta
+e_\theta=\theta^*-\theta
 $$
 
 $$
-\omega^\*=K_{p\theta}e_\theta
+\omega^\ast=K_{p\theta}e_\theta
 $$
 
 $$
-e_\omega=\omega^\*-\omega
+e_\omega=\omega^\ast-\omega
 $$
 
 $$

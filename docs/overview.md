@@ -64,7 +64,7 @@ $$
 J\frac{d\omega}{dt}+B\omega+\tau_L=\tau_e
 $$
 
-其中，$J$ 是转动惯量（Moment of Inertia），$B$ 是粘性阻尼系数（Viscous Damping Coefficient），$\omega$ 是角速度（Angular Velocity），$\tau_L$ 是负载转矩（Load Torque），$\tau_e$ 是电磁转矩（Electromagnetic Torque）。
+其中，`J` 是转动惯量（Moment of Inertia），`B` 是粘性阻尼系数（Viscous Damping Coefficient），`ω` 是角速度（Angular Velocity），`τ_L` 是负载转矩（Load Torque），`τ_e` 是电磁转矩（Electromagnetic Torque）。
 
 由角速度积分得到位置：
 

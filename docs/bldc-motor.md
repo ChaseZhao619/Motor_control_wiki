@@ -6,7 +6,7 @@
 
 - 理解 BLDC 为什么必须进行电子换向。
 - 区分六步换相、无感反电动势控制和 FOC。
-- 掌握电角度、机械角度、$dq$ 坐标系和 $i_d/i_q$ 的物理意义。
+- 掌握电角度、机械角度、`dq` 坐标系和 `i_d/i_q` 的物理意义。
 
 ## 适合读者
 
@@ -40,9 +40,9 @@ $$
 \mathbf{v}_{abc}=R_s\mathbf{i}_{abc}+L_s\frac{d\mathbf{i}_{abc}}{dt}+\mathbf{e}_{abc}
 $$
 
-其中 $\mathbf{v}_{abc}$ 是三相电压，$\mathbf{i}_{abc}$ 是三相电流，$R_s$ 是相电阻，$L_s$ 是相电感，$\mathbf{e}_{abc}$ 是三相反电动势。
+其中 `v_abc` 是三相电压，`i_abc` 是三相电流，`R_s` 是相电阻，`L_s` 是相电感，`e_abc` 是三相反电动势。
 
-FOC 常用 Clarke 变换（Clarke Transform）把三相量变到静止 $\alpha\beta$ 坐标：
+FOC 常用 Clarke 变换（Clarke Transform）把三相量变到静止 `αβ` 坐标：
 
 $$
 \begin{bmatrix}
@@ -62,7 +62,7 @@ i_c
 \end{bmatrix}
 $$
 
-再用 Park 变换（Park Transform）进入随转子旋转的 $dq$ 坐标：
+再用 Park 变换（Park Transform）进入随转子旋转的 `dq` 坐标：
 
 $$
 \begin{bmatrix}
@@ -86,7 +86,7 @@ $$
 \tau_e=\frac{3}{2}p\psi_f i_q
 $$
 
-其中 $p$ 是极对数（Pole Pairs），$\psi_f$ 是永磁体磁链（Permanent Magnet Flux Linkage）。在 $i_d=0$ 控制下，转矩主要由 $i_q$ 决定。
+其中 `p` 是极对数（Pole Pairs），`ψ_f` 是永磁体磁链（Permanent Magnet Flux Linkage）。在 `i_d=0` 控制下，转矩主要由 `i_q` 决定。
 
 电角度（Electrical Angle）与机械角度（Mechanical Angle）的关系为：
 
@@ -94,15 +94,15 @@ $$
 \theta_e=p\theta_m
 $$
 
-其中 $p$ 为极对数。机械转子转过一圈时，电角度会转过 $p$ 个电周期。换相表、霍尔状态和 FOC 角度都必须使用电角度。
+其中 `p` 为极对数。机械转子转过一圈时，电角度会转过 `p` 个电周期。换相表、霍尔状态和 FOC 角度都必须使用电角度。
 
-$dq$ 坐标系中，$d$ 轴（Direct Axis）与转子永磁体磁链方向对齐，$q$ 轴（Quadrature Axis）与 $d$ 轴正交。表贴式 BLDC 常令 $i_d^\*=0$，因为 $i_d$ 主要改变磁链而不直接产生有效转矩；$i_q$ 与转矩近似成正比。
+`dq` 坐标系中，`d` 轴（Direct Axis）与转子永磁体磁链方向对齐，`q` 轴（Quadrature Axis）与 `d` 轴正交。表贴式 BLDC 常令 `i_d^*=0`，因为 `i_d` 主要改变磁链而不直接产生有效转矩；`i_q` 与转矩近似成正比。
 
 ## 常见控制目标
 
 - 开环启动：在低速时用预设换相或强拖方式启动。
-- 速度控制：控制换相频率、电压或 $i_q$，使转速跟随目标。
-- 转矩控制：通过电流环控制 $i_q$。
+- 速度控制：控制换相频率、电压或 `i_q`，使转速跟随目标。
+- 转矩控制：通过电流环控制 `i_q`。
 - 高效率控制：使用 FOC 降低转矩脉动和电流损耗。
 
 ## 主流控制方法
@@ -141,7 +141,7 @@ $$
 FOC 的目标是把电流矢量锁定在最有效的转矩方向。典型控制律为：
 
 $$
-e_d=i_d^\*-i_d,\quad e_q=i_q^\*-i_q
+e_d=i_d^*-i_d,\quad e_q=i_q^\ast-i_q
 $$
 
 $$
@@ -154,7 +154,7 @@ $$
 
 再经过反 Park 变换和空间矢量脉宽调制（Space Vector PWM, SVPWM）生成三相逆变器占空比。
 
-典型 FOC 流程为：采样三相电流，经过 Clarke 变换得到 $i_\alpha/i_\beta$；结合转子电角度做 Park 变换得到 $i_d/i_q$；分别用 PI 控制 $i_d$ 和 $i_q$；再反变换到静止坐标，最后通过 SVPWM 生成三相占空比。
+典型 FOC 流程为：采样三相电流，经过 Clarke 变换得到 `i_α/i_β`；结合转子电角度做 Park 变换得到 `i_d/i_q`；分别用 PI 控制 `i_d` 和 `i_q`；再反变换到静止坐标，最后通过 SVPWM 生成三相占空比。
 
 ## 控制框图
 
@@ -183,7 +183,7 @@ BLDC 需要三相逆变器、栅极驱动器（Gate Driver）、电流采样和�
 
 - BLDC 不等于只能六步换相；高性能 BLDC 常用 FOC。
 - 无感控制不是没有反馈，而是反馈来自电压、电流和模型估计。
-- 电角度不等于机械角度，二者关系为 $\theta_e=p\theta_m$。
+- 电角度不等于机械角度，二者关系为 `θ_e=pθ_m`。
 - FOC 不是单独一个公式，而是一整套坐标变换、电流采样、角度估计和 PWM 合成流程。
 
 ## 导航
