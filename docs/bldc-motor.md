@@ -42,42 +42,24 @@ $$
 
 其中 `v_abc` 是三相电压，`i_abc` 是三相电流，`R_s` 是相电阻，`L_s` 是相电感，`e_abc` 是三相反电动势。
 
-FOC 常用 Clarke 变换（Clarke Transform）把三相量变到静止 `αβ` 坐标：
+FOC 常用 Clarke 变换（Clarke Transform）把三相量变到静止 `αβ` 坐标。为避免部分 Markdown 预览器对矩阵换行渲染不稳定，这里用逐行方程表示：
 
 $$
-\begin{bmatrix}
-i_\alpha \\
-i_\beta
-\end{bmatrix}
-=
-\frac{2}{3}
-\begin{bmatrix}
-1 & -\frac{1}{2} & -\frac{1}{2} \\
-0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2}
-\end{bmatrix}
-\begin{bmatrix}
-i_a\\
-i_b\\
-i_c
-\end{bmatrix}
+i_\alpha=\frac{2}{3}\left(i_a-\frac{1}{2}i_b-\frac{1}{2}i_c\right)
+$$
+
+$$
+i_\beta=\frac{2}{3}\left(\frac{\sqrt{3}}{2}i_b-\frac{\sqrt{3}}{2}i_c\right)
 $$
 
 再用 Park 变换（Park Transform）进入随转子旋转的 `dq` 坐标：
 
 $$
-\begin{bmatrix}
-i_d\\
-i_q
-\end{bmatrix}
-=
-\begin{bmatrix}
-\cos\theta_e & \sin\theta_e\\
--\sin\theta_e & \cos\theta_e
-\end{bmatrix}
-\begin{bmatrix}
-i_\alpha\\
-i_\beta
-\end{bmatrix}
+i_d=i_\alpha\cos\theta_e+i_\beta\sin\theta_e
+$$
+
+$$
+i_q=-i_\alpha\sin\theta_e+i_\beta\cos\theta_e
 $$
 
 表贴式永磁同步电机近似满足：
